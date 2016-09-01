@@ -57,11 +57,17 @@ THREE.ViveController = function ( id ) {
 
 	};
 
+	this.isTracking = function () {
+		return (
+			gamepad !== undefined && gamepad.pose !== null && gamepad.pose.position !== null && gamepad.pose.orientation !== null
+		);
+	};
+
 	this.update = function () {
 
 		gamepad = findGamepad( id );
 
-		if ( gamepad !== undefined && gamepad.pose !== null ) {
+		if ( this.isTracking() ) {
 
 			//  Position and orientation.
 
